@@ -1,10 +1,11 @@
 import React from 'react';
-import SpeciesItem from './components/SpeciesItem';
+import SpeciesCont from './components/SpeciesCont';
+import './App.scss'
 
 function App() {
   return (
     <div className="App">
-      <SpeciesItem/>
+      <SpeciesCont/>
     </div>
   );
 }

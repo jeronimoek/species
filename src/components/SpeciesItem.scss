@@ -1,0 +1,41 @@
+$borderR : 10px;
+$photoSize : 200px;
+$pad : 10px;
+$contNormalW: 1200px;
+$contSmallW: 768px;
+$contExtraSmallW: 480px;
+
+div.registryCont{
+  display: flex;
+  justify-content: space-between;
+  background-color: beige;
+  border-radius: $borderR;
+  padding: $pad;
+  @media screen and (max-width: $contExtraSmallW){
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+div.registryData{
+  *{
+    padding: 0 0 $pad 0;
+    @media screen and (max-width: $contExtraSmallW){
+      text-align: center;
+    }
+  }
+}
+
+div.imgSpCont{
+  width: $photoSize;
+  height: $photoSize;
+  padding: 0 0 0 $pad;
+  border-radius: $borderR;
+  @media screen and (max-width: $contExtraSmallW){
+    padding: $pad 0 0 0;
+  }
+}
+
+img.imgSp{
+  object-fit: contain;
+}

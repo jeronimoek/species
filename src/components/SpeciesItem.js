@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import './SpeciesItem.scss'
+import React from 'react';
 
 function SpeciesItem(props) {
-  const [data, dataSet] = useState(null)
-  useEffect(() => {
-    async function fetchMyAPI() {
-      try{
-        let response = await fetch("https://2y0eh1tux1.execute-api.sa-east-1.amazonaws.com/default/species")
-        response = await response.json()
-        dataSet(response)
-      } catch(error) {
-        console.log("error: ",error)
-      }
+  const species = props.species
+  let imgUrl = ""
+  for(let registry of Object.values(species.info.registers)){
+    if(imgUrl){break}
+    if(registry.imgUrl && registry.imgUrl!=="https://www.ecoregistros.org/site/images/play.bmp"){
+      imgUrl = registry.imgUrl
     }
-    fetchMyAPI()
-  }, [])
-
+  }
   return (
     <div>
-      data:
-
+      <div className="registryCont">
+        <div className="registryData">
+          <h3>{species.scientific_name}</h3>
+          {species.nombre_comun ? <h4>{species.nombre_comun}</h4> : null}
+          {species.info.nombre_ingles ? <p>Inglés: {species.info.nombre_ingles}</p> : null}
+          {species.info.nombre_port ? <p>Portugués: {species.info.nombre_port}</p> : null}
+        </div>
+        <div className="imgSpCont">
+          {imgUrl ? <img className="imgSp" src={imgUrl}></img> : null}
+        </div>
+      </div>
     </div>
   );
 }
