@@ -1,24 +1,19 @@
-$colW: 350px;
+$colW: 150px;
 $colSize: minmax($colW,25%);
 $gap: 20px;
 $contNormalW: 1200px;
 $contSmallW: 768px;
 $contExtraSmallW: 480px;
+$pad : 10px;
 
-div.speciesCont{
-  display: grid;
-  grid-template-columns: $colSize $colSize $colSize;
-  gap: $gap $gap;
-  margin: 100px $gap;
+.speciesCont{
+  padding: $pad;
   justify-content: center;
   @media screen and (max-width: $contNormalW){
     width: calc( 100vw - 40px );
-    grid-template-columns: minmax($colW,40%) minmax($colW,40%);
   }
   @media screen and (max-width: $contSmallW){
-    grid-template-columns: minmax($colW,90%);
   }
   @media screen and(max-width: $contExtraSmallW){
-    grid-template-columns: minmax(250px,90%);
   }
 }

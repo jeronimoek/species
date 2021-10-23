@@ -4,17 +4,20 @@ $pad : 10px;
 $contNormalW: 1200px;
 $contSmallW: 768px;
 $contExtraSmallW: 480px;
+$shadow: 0 0 10px rgba(0, 0, 0, 0.322);
 
 div.registryCont{
   display: flex;
   justify-content: space-between;
-  background-color: beige;
+  background-color: rgba(179, 179, 179, 0.712);
   border-radius: $borderR;
   padding: $pad;
+  height: 100%;
   @media screen and (max-width: $contExtraSmallW){
     flex-direction: column;
     align-items: center;
   }
+  box-shadow: $shadow;
 }
 
 div.registryData{
@@ -26,16 +29,34 @@ div.registryData{
   }
 }
 
+.Card{
+  height: "min-content";
+  width: 230px;
+  margin: $pad;
+  border-radius: $borderR;
+  box-shadow: $shadow;
+}
+
 div.imgSpCont{
+  flex-shrink: 0;
   width: $photoSize;
   height: $photoSize;
-  padding: 0 0 0 $pad;
   border-radius: $borderR;
+  margin: auto;
+  padding: 10px 0px;
   @media screen and (max-width: $contExtraSmallW){
-    padding: $pad 0 0 0;
+
   }
 }
 
 img.imgSp{
-  object-fit: contain;
+  border-radius: $borderR;
+  object-fit: cover;
+  width:100%; 
+  height:100%;
+}
+
+.ant-card-body{
+  padding: 10px;
+  text-align: center;
 }
