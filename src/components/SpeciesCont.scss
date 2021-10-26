@@ -1,3 +1,4 @@
+$borderR : 10px;
 $colW: 150px;
 $colSize: minmax($colW,25%);
 $gap: 20px;
@@ -5,6 +6,8 @@ $contNormalW: 1200px;
 $contSmallW: 768px;
 $contExtraSmallW: 480px;
 $pad : 10px;
+$glassBgColor: rgba(255, 255, 255, 0.7);
+$glassBdFilter: blur(3px);
 
 .speciesCont{
   padding: $pad;
@@ -16,4 +19,13 @@ $pad : 10px;
   }
   @media screen and(max-width: $contExtraSmallW){
   }
+}
+
+.pagCont{
+  padding: $pad;
+  width: fit-content;
+  margin: $gap auto 0px;
+  border-radius: $borderR;
+  background-color: $glassBgColor;
+  backdrop-filter: $glassBdFilter;
 }

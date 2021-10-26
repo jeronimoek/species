@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import SpeciesItem from './SpeciesItem';
 import './SpeciesCont.scss'
 import RouteContext from '../context/RouteProvider';
@@ -7,23 +7,57 @@ import getSpeciesOfLoc from '../utils/getSpeciesOfLoc';
 import checkCache from '../utils/checkCache';
 import getSpeciesData from '../utils/getSpeciesData'
 import 'antd/dist/antd.css';
-import { Row, Col } from 'antd';
+import { Pagination } from 'antd';
+import { useHistory } from 'react-router';
+
+const spByPage = 20
+
+function getSubArr(srcArr, page){
+  console.log("getSubArr: ",page)
+  const newArr = srcArr.slice((page-1)*spByPage, (page)*spByPage)
+  return newArr
+}
 
 function SpeciesCont(props) {
-  console.log("render")
-  const [speciesData, setSpeciesData] = useState(null)
-  var query = "https://us-central1-species-eebec.cloudfunctions.net/app"
-  const loc = useContext(RouteContext).match.params.lugar
+  console.log("render SpeciesCont")
+  let query = "https://us-central1-species-eebec.cloudfunctions.net/app"
+
+  const match = useContext(RouteContext).match
+  console.log("SpeciesCont match path: ",match.path)
+  const loc = match.params.lugar
+  const paramPage = match.params.page
   const onLocChange = useContext(LocContext).locInfo.onLocChange
   
-  useEffect(()=>{
-    (async ()=>{
-      if(loc){
-        onLocChange(loc)
-      }
-    })()
+  const [page, setPage] = useState(1)
+  const [speciesData, setSpeciesData] = useState([])
+  const [speciesItemList, setSpeciesItemList] = useState([])
+  const [allSpecies, setAllSpecies] = useState([])
+  const [speciesArr, setSpeciesArr] = useState([])
+
+  console.log("page: ",page)
+  useEffect(()=>{                                                     // Sets page index based on url path params. Default is 1.
+    if(paramPage){
+      console.log("setPage: ",paramPage)
+      setPage(paramPage)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[loc])
+  },[paramPage])
+
+  /*
+    const firstUpdate = useRef(true);
+    useEffect(()=>{                                                   // CURRENTLY UNNECESSARY (currently I use the url path params)
+      if (firstUpdate.current) {
+        firstUpdate.current = false;
+        return;
+      }
+      if(loc){
+        console.log("(locChange) setPage: ",1)
+        onLocChange(loc)
+        setPage(1)
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[loc])
+  */
 
   if(loc){
     query += `?lugar=${loc}`
@@ -31,10 +65,14 @@ function SpeciesCont(props) {
     query += `?lugar=Chajarí`
     console.log("ERROR - SpeciesCont: No loc name")
   }
-  useEffect(() => {
-    (async ()=>{
+  console.log(query)
+
+  useEffect(() => {                                                   // Looks up if the species data for this location has already been
+    (async ()=>{                                                      // requested and cached, in which case it returns the cached data.
+      console.log(query)                                              // Otherwise it requests, caches and returns the data.
       const resp = await checkCache(query,getSpeciesOfLoc)
       if(resp){
+        console.log("setSpeciesData: ",resp)
         setSpeciesData({...resp})
       } else {
         console.log("RESP EMPTY: ", resp)
@@ -43,66 +81,88 @@ function SpeciesCont(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query])
 
-  const [speciesItemList, setSpeciesItemList] = useState([])
-  const speciesArr = []
-  useEffect(() => {
-    console.log("useEffect")
-    let dataElemArr = [];
-    (async ()=>{
-      if(speciesData){
-        let i = 0
-        for(; i < speciesData.species.length && i < 20; i++){
-          const elem = speciesData.species[i]
-          if(elem){
-            speciesArr.push(elem)
+  useEffect(()=>{                                                     // Loops through the species data and returns all species
+    console.log("setSpeciesData INSIDE setAllSpecies useEffect: ",speciesData)
+    if(speciesData && speciesData.count){
+      const tempAllSpecies = []
+      for(let elem of speciesData.species){
+        if(elem && allSpecies.indexOf(elem) === -1){
+          tempAllSpecies.push(elem)
+        }
+      }
+      const specLocs = speciesData.lugaresDetallados
+      for(let specLoc in specLocs){
+        console.log(specLoc)
+        for(let sp of specLocs[specLoc].species){
+          if(sp && allSpecies.indexOf(sp) === -1){
+            tempAllSpecies.push(sp)
           }
         }
-        const specLocs = speciesData.lugaresDetallados
-        for(let specLoc in specLocs){
-          for(let sp of specLocs[specLoc].species){
-            if(i<20){
-              speciesArr.push(sp)
-              i++
+      }
+      setAllSpecies(tempAllSpecies)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[speciesData])
+
+  useEffect(() => {                                                   // Gets subArray of allSpecies array based on page index
+    console.log("setSpeciesArr: ",getSubArr(allSpecies, page))
+    setSpeciesArr([...getSubArr(allSpecies, page)])
+  },[allSpecies, page])
+
+  useEffect(() => {                                                   // Creates a SpeciesItem component for each species
+    let dataElemArr = [];
+    (async ()=>{
+      
+      console.log("speciesArr",speciesArr)
+      if(speciesArr.length){
+        const data = await checkCache(speciesArr, getSpeciesData)     // Looks up if the data for this species (singular) has already been requested
+        //console.log(data)                                           // and cached, in which case it returns the cached data. Otherwise
+        if(data){                                                     // it requests, caches and returns the data.
+          for(let dataElem of data){
+            if(dataElem){
+              dataElemArr.push(
+                <SpeciesItem species={dataElem} key={dataElem.scientific_name}/>
+              )
             }
           }
         }
-        console.log(speciesArr)
-        const data = await checkCache(speciesArr, getSpeciesData)
-        console.log(data)
-        for(let dataElem of data){
-          if(dataElem){
-            dataElemArr.push(
-              <SpeciesItem species={dataElem}/>
-              /*
-              <Col span={6} key={dataElem.scientific_name}>
-                <SpeciesItem species={dataElem}/>
-              </Col>
-              */
-            )
-          }
-        }
-        setSpeciesItemList(dataElemArr)
       }
+      console.log("setSpeciesItemList: ",dataElemArr)
+      setSpeciesItemList([...dataElemArr])
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [speciesData])
+  }, [speciesArr])
+
+  const history = useHistory();
+
+  const onPageChange = (ev) => {                                      // Changes page index (pushes to history)
+    console.log("Push Page: ",ev)
+    let exp = /\/[0-9]+/i
+    let newUrl = match.url
+    if(newUrl.match(exp)){
+      newUrl = newUrl.replace(exp, "")
+    }
+    history.push(`${newUrl}/${ev}`)
+  }
+  console.log(speciesItemList)
   return (
-    <>
+    <div>
       <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
-        {speciesItemList}
+        {[...speciesItemList]}
       </div>
-      {/*
-      <Row gutter={[16, 16]} wrap={true} className="speciesCont" style={{width: "100%"}}>
-        
-      </Row>
-      */}
-    </>
-  )
-  /*
-    <div className="speciesCont">
-      {speciesItemList}
+      <div className="pagCont">
+        <Pagination
+          onChange={ev => onPageChange(ev)} 
+          showTotal={()=>`${(page-1)*spByPage}-${(page)*spByPage} de ${allSpecies.length} especies`} 
+          defaultCurrent={page} 
+          showSizeChanger={false}
+          total={allSpecies.length} 
+          defaultPageSize={20} 
+          style={{display: "flex", justifyContent: "center", position: "relative"}}
+        />
+      </div>
     </div>
-  */
+  )
 }
 
 export default SpeciesCont;

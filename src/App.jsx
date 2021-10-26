@@ -28,7 +28,7 @@ function App() {
               {/*<Header/>*/}
             </Header>
             <Layout>
-              <Sider breakpoint="md" collapsedWidth="0" zeroWidthTriggerStyle={{top:0,justifySelf: "end"}}>
+              <Sider breakpoint="md" collapsedWidth="0" zeroWidthTriggerStyle={{top:0,justifySelf: "end"}} width={350} >
                 <Sidebar/>
               </Sider>
               <Content>

@@ -8,15 +8,17 @@ export const LocProvider = (props) => {
   const [locData, setLocData] = useState([])
   
   const handleLocDataChange = (newData) => {
-    //console.log("newData",newData)
+    console.log("setLocData",newData)
     setLocData(newData)
   }
 
   const handleLocChange = (newLoc) => {
+    console.log("setLoc",newLoc)
     setLoc(newLoc)
   }
   
   const handleLocSpecChange = (newLocSpec) => {
+    console.log("setLocSpec",newLocSpec)
     setLocSpec(newLocSpec)
   }
 

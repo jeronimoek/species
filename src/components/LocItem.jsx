@@ -8,7 +8,7 @@ function LocItem(props) {
   }
   return (
     <div>
-      En <Link to={`/explore/${props.loc.lugar}`}>{props.loc.lugar}</Link> hay {props.loc.count} registros.
+      <Link to={`/explore/${props.loc.lugar}/1`}>{props.loc.lugar}</Link> - {props.loc.count}
       {}
     </div>
   );

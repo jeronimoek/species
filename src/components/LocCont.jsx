@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import LocContext from '../context/LocProvider';
+import checkCache from '../utils/checkCache';
 import getTopLocs from '../utils/getTopLocs';
 import LocItem from './LocItem';
 
 function LocCont(props) {
   
-  const [locsData, locsDataSet] = useState(null)
+  const [locsData, setLocsData] = useState(null)
 
   const locInfo = useContext(LocContext).locInfo
   const locSelected = locInfo.loc
@@ -13,9 +14,10 @@ function LocCont(props) {
 
   useEffect(() => {
     (async ()=>{
-      const response = await getTopLocs()
+      const response = await checkCache("getTopLocs",getTopLocs)
       onLocDataChange(response)
-      locsDataSet(response)
+      console.log("setLocsData: ", response)
+      setLocsData(response)
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
