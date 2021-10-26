@@ -14,6 +14,7 @@ import { RouteProvider } from './context/RouteProvider';
 import Sidebar from './components/Sidebar';
 import Explore from './components/Explore';
 import { Layout } from 'antd';
+import TopMenu from './components/TopMenu'
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -24,11 +25,11 @@ function App() {
         <div className="App">
           <LocProvider>
           <Layout>
-            <Header>
-              {/*<Header/>*/}
+            <Header style={{position: 'sticky', top:"0px",width: "100%",zIndex:2, borderBottom: "solid 1px white"}}>
+              <TopMenu/>
             </Header>
             <Layout>
-              <Sider breakpoint="md" collapsedWidth="0" zeroWidthTriggerStyle={{top:0,justifySelf: "end"}} width={250} >
+              <Sider breakpoint="md" collapsedWidth="0" zeroWidthTriggerStyle={{top:0,justifySelf: "end"}} width={250} style={{zIndex: 1}}>
                 <Sidebar/>
               </Sider>
               <Content>
@@ -48,7 +49,7 @@ function App() {
                 </div>
               </Content>
             </Layout>
-            <Footer>
+            <Footer style={{zIndex:1}}>
               
             </Footer>
           </Layout>

@@ -12,7 +12,7 @@ function LocItem(props) {
       <Link to={`/explore/${props.loc.lugar}/1`}>
         <span className="loc">{props.loc.lugar}</span>
         {" "} 
-        <span className="count">{props.loc.count}</span>
+        <span className="count">{props.loc.count} species</span>
       </Link>
     </div>
   );

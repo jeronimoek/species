@@ -1,0 +1,17 @@
+.topMenu{
+  background: none;
+  color: white;
+  border: none;
+  .menuItem{
+    a{
+      color: white
+    }
+  }
+}
+
+.logo img {
+  display: block;
+  max-height: 100%;
+  width: auto;
+  height: inherit;
+}
