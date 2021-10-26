@@ -1,7 +1,10 @@
+$gap: 20px;
+
 .SourceCode{
+  z-index: 9999;
   position: fixed;
-  bottom: $commonGap;
-  right: $commonGap;
+  bottom: $gap;
+  right: $gap;
   border-radius: 9999px;
   background-color: white;
   box-shadow: 0 1px 3px 3px white;
