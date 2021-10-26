@@ -1,11 +1,12 @@
-# Getting Started with Create React App
-## Available Scripts
-### `yarn start`
+# ¡Explore las especies de seres vivos en Entre Ríos!
+## Proyectos relacionados:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-Builds the app for production to the `build` folder.\
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### [species-scrapper](https://github.com/jeronimoek/species-scrapper)
+App en node.js encargada de obtener todos los datos sobre las especies, publicados de forma pública en una página web de terceros.\
+Para tal fin se utilizó la libreria Cheerio.
 
+### [firebase-api](https://github.com/jeronimoek/firebase-api)
+Contiene las funciones utilizadas en el servicio de Firebase, Firebase Functions, la cual hace de API entre el frontend y la base de datos NoSQL Firestore.
+
+## Tecnologías utilizadas:
+**React, Node.js, NPM, HTML, CSS, Firebase (Firestore & Functions), Cheerio (para scrapping), SCSS, Ant Design.**
