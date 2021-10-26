@@ -7,8 +7,9 @@ import getSpeciesOfLoc from '../utils/getSpeciesOfLoc';
 import checkCache from '../utils/checkCache';
 import getSpeciesData from '../utils/getSpeciesData'
 import 'antd/dist/antd.css';
-import { Pagination } from 'antd';
+import { Pagination, Spin } from 'antd';
 import { useHistory } from 'react-router';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const spByPage = 20
 
@@ -28,6 +29,7 @@ function SpeciesCont(props) {
   const paramPage = match.params.page
   const onLocChange = useContext(LocContext).locInfo.onLocChange
   
+  const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
   const [speciesData, setSpeciesData] = useState([])
   const [speciesItemList, setSpeciesItemList] = useState([])
@@ -45,7 +47,7 @@ function SpeciesCont(props) {
 
   /*
     const firstUpdate = useRef(true);
-    useEffect(()=>{                                                   // CURRENTLY UNNECESSARY (currently I use the url path params)
+    useEffect(()=>{                                                   // CURRENTLY UNNECESSARY (currently using the url path params)
       if (firstUpdate.current) {
         firstUpdate.current = false;
         return;
@@ -70,6 +72,7 @@ function SpeciesCont(props) {
   useEffect(() => {                                                   // Looks up if the species data for this location has already been
     (async ()=>{                                                      // requested and cached, in which case it returns the cached data.
       console.log(query)                                              // Otherwise it requests, caches and returns the data.
+      setLoading(true)
       const resp = await checkCache(query,getSpeciesOfLoc)
       if(resp){
         console.log("setSpeciesData: ",resp)
@@ -115,9 +118,9 @@ function SpeciesCont(props) {
       
       console.log("speciesArr",speciesArr)
       if(speciesArr.length){
-        const data = await checkCache(speciesArr, getSpeciesData)     // Looks up if the data for this species (singular) has already been requested
-        //console.log(data)                                           // and cached, in which case it returns the cached data. Otherwise
-        if(data){                                                     // it requests, caches and returns the data.
+        const data = await checkCache(speciesArr, getSpeciesData)     // Looks up if the data for this species (singular) has already been
+        //console.log(data)                                           // requested and cached, in which case it returns the cached data.
+        if(data){                                                     // Otherwise it requests, caches and returns the data.
           for(let dataElem of data){
             if(dataElem){
               dataElemArr.push(
@@ -129,6 +132,7 @@ function SpeciesCont(props) {
       }
       console.log("setSpeciesItemList: ",dataElemArr)
       setSpeciesItemList([...dataElemArr])
+      setLoading(false)
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [speciesArr])
@@ -145,23 +149,34 @@ function SpeciesCont(props) {
     history.push(`${newUrl}/${ev}`)
   }
   console.log(speciesItemList)
+
+  const antIcon = <LoadingOutlined style={{ fontSize: 80 }} spin />;
+
   return (
-    <div>
-      <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
-        {[...speciesItemList]}
+    <>
+      {loading && 
+        <div className="spinCont">
+          <h2>LOADING...</h2>
+          <Spin indicator={antIcon}/>
+        </div>
+      }
+      <div>
+        <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
+          {[...speciesItemList]}
+        </div>
+        <div className="pagCont">
+          <Pagination
+            onChange={ev => onPageChange(ev)} 
+            showTotal={()=>`${(page-1)*spByPage}-${(page)*spByPage} de ${allSpecies.length} especies`} 
+            defaultCurrent={page} 
+            showSizeChanger={false}
+            total={allSpecies.length} 
+            defaultPageSize={20} 
+            style={{display: "flex", justifyContent: "center", position: "relative"}}
+          />
+        </div>
       </div>
-      <div className="pagCont">
-        <Pagination
-          onChange={ev => onPageChange(ev)} 
-          showTotal={()=>`${(page-1)*spByPage}-${(page)*spByPage} de ${allSpecies.length} especies`} 
-          defaultCurrent={page} 
-          showSizeChanger={false}
-          total={allSpecies.length} 
-          defaultPageSize={20} 
-          style={{display: "flex", justifyContent: "center", position: "relative"}}
-        />
-      </div>
-    </div>
+    </>
   )
 }
 

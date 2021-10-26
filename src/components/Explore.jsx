@@ -17,7 +17,7 @@ function Explore(props) {
           </RouteProvider>
         </Route>
         <Route path={match.path}>
-          <h3>Please select a location.</h3>
+          <h2 style={{position: "relative", textAlign: "center", color: "white", paddingTop: 20}}>Please select a location from the left menu</h2>
         </Route>
       </Switch>
     </div>

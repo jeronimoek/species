@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link} from 'react-router-dom';
+import './LocItem.scss'
 
 function LocItem(props) {
   var locsSpec = []
@@ -7,9 +8,12 @@ function LocItem(props) {
     locsSpec.push()
   }
   return (
-    <div>
-      <Link to={`/explore/${props.loc.lugar}/1`}>{props.loc.lugar}</Link> - {props.loc.count}
-      {}
+    <div className="locItem">
+      <Link to={`/explore/${props.loc.lugar}/1`}>
+        <span className="loc">{props.loc.lugar}</span>
+        {" "} 
+        <span className="count">{props.loc.count}</span>
+      </Link>
     </div>
   );
 }

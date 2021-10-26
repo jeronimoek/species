@@ -1,0 +1,20 @@
+div.locItem{
+  background-color: rgba(255, 255, 255, 0.151);
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  height: fit-content;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+span.loc{
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+span.count{
+  color: rgb(192, 192, 192);
+  font-size: 14px;
+}

@@ -9,6 +9,11 @@ $pad : 10px;
 $glassBgColor: rgba(255, 255, 255, 0.7);
 $glassBdFilter: blur(3px);
 
+.glass{
+  background-color: $glassBgColor;
+  backdrop-filter: $glassBdFilter;
+}
+
 .speciesCont{
   padding: $pad;
   justify-content: center;
@@ -22,10 +27,22 @@ $glassBdFilter: blur(3px);
 }
 
 .pagCont{
+  @extend .glass;
   padding: $pad;
   width: fit-content;
   margin: $gap auto 0px;
   border-radius: $borderR;
-  background-color: $glassBgColor;
-  backdrop-filter: $glassBdFilter;
+}
+
+.spinCont{
+  @extend .glass;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  text-align: center;
+  align-content: center;
+  padding-top: 100px;
 }
