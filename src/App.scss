@@ -8,24 +8,14 @@
   max-width: 100vw;
 }
 
-.mainDiv{
-  height: 100%;
-  position: relative;
-  padding-bottom: 20px;
-  overflow: hidden;
+body{
+  overflow-x: hidden;
 }
 
-.mainDiv:before{
+.header{
+  position: sticky;
+  top: 0px;
   width: 100%;
-  filter: blur(2px) brightness(55%) sepia(0.2) saturate(166%) hue-rotate(50deg);
-  background-image: url("https://jeronimoek.github.io/species/img/leafs_bg.jpg");
-  background-size: cover;
-  background-position: center center;
-  /* must match parent height */
-  height: 100%;
-  position: absolute;
-  content: "";
-  /* comment out to see why this is necessary  */
-  overflow: hidden;
-  transform: scale(1.01);
+  z-index:99;
+  border-bottom: solid 1px white
 }

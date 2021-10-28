@@ -6,13 +6,7 @@ $contSmallW: 768px;
 $contExtraSmallW: 480px;
 $shadow: 0 0 10px rgba(0, 0, 0, 0.322);
 
-$glassBgColor: rgba(255, 255, 255, 0.7);
-$glassBdFilter: blur(3px);
-
-.glass{
-  background-color: $glassBgColor;
-  backdrop-filter: $glassBdFilter;
-}
+@import '../specialStyles/styles';
 
 .Card{
   @extend .glass;

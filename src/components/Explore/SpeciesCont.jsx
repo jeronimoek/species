@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import SpeciesItem from './SpeciesItem';
 import './SpeciesCont.scss'
-import RouteContext from '../context/RouteProvider';
-import LocContext from '../context/LocProvider';
-import getSpeciesOfLoc from '../utils/getSpeciesOfLoc';
-import checkCache from '../utils/checkCache';
-import getSpeciesData from '../utils/getSpeciesData'
+import RouteContext from '../../context/RouteProvider';
+import LocContext from '../../context/LocProvider';
+import getSpeciesOfLoc from '../../utils/getSpeciesOfLoc';
+import checkCache from '../../utils/checkCache';
+import getSpeciesData from '../../utils/getSpeciesData'
 import 'antd/dist/antd.css';
 import { Pagination, Spin } from 'antd';
 import { useHistory } from 'react-router';
@@ -155,9 +155,11 @@ function SpeciesCont(props) {
   return (
     <>
       {loading && 
-        <div className="spinCont">
-          <h2>LOADING...</h2>
-          <Spin indicator={antIcon}/>
+        <div className="spinDiv">
+          <div className="spinCont">
+            <h2>LOADING...</h2>
+            <Spin indicator={antIcon}/>
+          </div>
         </div>
       }
       <div>

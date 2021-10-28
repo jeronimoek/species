@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss'
 import 'antd/dist/antd.css';
 import {
@@ -11,45 +11,47 @@ import {
 } from "react-router-dom";
 import { LocProvider } from './context/LocProvider';
 import { RouteProvider } from './context/RouteProvider';
-import Sidebar from './components/Sidebar';
-import Explore from './components/Explore';
+import Explore from './components/Explore/Explore';
 import { Layout } from 'antd';
-import TopMenu from './components/TopMenu'
+import NavBar from './components/NavBar'
 import SourceCode from './components/SourceCode';
+import Contact from './components/Contact/Contact';
+import Home from './components/Home/Home';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer } = Layout;
+
+export const HEADER_ROUTES = {EXPLORE: "explore", CONTACT: "contact", HOME: "home"}
 
 function App() {
+  
+  const [headerRoute, setHeaderRoute] = useState("")
+  console.log(headerRoute)
   return (
     <Router>
       <HashRouter>
         <div className="App">
           <LocProvider>
             <Layout>
-              <Header style={{position: 'sticky', top:"0px",width: "100%",zIndex:2, borderBottom: "solid 1px white"}}>
-                <TopMenu/>
+              <Header className="header">
+                <NavBar headerRoute={headerRoute}/>
               </Header>
-              <Layout>
-                <Sider breakpoint="md" collapsedWidth="0" zeroWidthTriggerStyle={{top:0,justifySelf: "end"}} width={250} style={{zIndex: 1}}>
-                  <Sidebar/>
-                </Sider>
-                <Content>
-                  <div className="mainDiv">
-                    <Switch>
-                      <Route path="/" exact>
-                        <RouteProvider>
-                          {/*<Home />*/}
-                        </RouteProvider>
-                      </Route>
-                      <Route path="/explore">
-                        <RouteProvider>
-                          <Explore />
-                        </RouteProvider>
-                      </Route>
-                    </Switch>
-                  </div>
-                </Content>
-              </Layout>
+              <Switch>
+                <Route path="/" exact>
+                  <RouteProvider>
+                    <Home setHeaderRoute={setHeaderRoute}/>
+                  </RouteProvider>
+                </Route>
+                <Route path="/explore">
+                  <RouteProvider>
+                    <Explore setHeaderRoute={setHeaderRoute}/>
+                  </RouteProvider>
+                </Route>
+                <Route path="/contact">
+                  <RouteProvider>
+                    <Contact setHeaderRoute={setHeaderRoute}/>
+                  </RouteProvider>
+                </Route>
+              </Switch>
               <Footer style={{zIndex:1}}>
                 
               </Footer>

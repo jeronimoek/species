@@ -1,15 +1,20 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
-import './TopMenu.scss'
+import './NavBar.scss'
 import { Link } from 'react-router-dom';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+import 'antd/dist/antd.css';
+//const SubMenu = Menu.SubMenu;
+//const MenuItemGroup = Menu.ItemGroup;
+import { HEADER_ROUTES } from '../App';
 
-function TopMenu(props) {
+function NavBar(props) {
+  const actRoute = props.headerRoute
+  console.log(actRoute)
   return (
-    <div style={{display: "flex",position: "relative", height: "inherit"}}>
+    <div className="navCont">
       <div className="logo"><img src="https://raw.githubusercontent.com/jeronimoek/jeronimoek.github.io/master/species/img/logo.png" /></div>
-      <Menu mode="horizontal" className="topMenu">
+      <Menu mode="horizontal" className="topMenu" disabledOverflow={true}>
+        {/*<Menu.Item key="home" className={`menuItem ${actRoute === HEADER_ROUTES.HOME ? "ant-menu-item-selected" : ""}`}>*/}
         <Menu.Item key="home" className="menuItem">
           <Link to={`/`}>Home</Link>
         </Menu.Item>
@@ -24,4 +29,4 @@ function TopMenu(props) {
   );
 }
 
-export default TopMenu;
+export default NavBar;

@@ -34,7 +34,7 @@ $glassBdFilter: blur(3px);
   border-radius: $borderR;
 }
 
-.spinCont{
+.spinDiv{
   @extend .glass;
   z-index: 10;
   height: 100%;
@@ -45,4 +45,8 @@ $glassBdFilter: blur(3px);
   text-align: center;
   align-content: center;
   padding-top: 100px;
+  .spinCont{
+    position: sticky;
+    top: 100px;
+  }
 }

@@ -1,7 +1,12 @@
+.navCont{
+  display: flex;
+  position: relative;
+  height: inherit
+}
+
 .topMenu{
   background: none;
   color: white;
-  border: none;
   .menuItem{
     a{
       color: white
@@ -14,4 +19,9 @@
   max-height: 100%;
   width: auto;
   height: inherit;
+  padding: 5px 10px 5px 0;
+}
+
+.active{
+  border-bottom: solid 1px blue;
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import LocContext from '../context/LocProvider';
-import checkCache from '../utils/checkCache';
-import getTopLocs from '../utils/getTopLocs';
+import LocContext from '../../context/LocProvider';
+import checkCache from '../../utils/checkCache';
+import getTopLocs from '../../utils/getTopLocs';
 import LocItem from './LocItem';
 
 function LocCont(props) {
