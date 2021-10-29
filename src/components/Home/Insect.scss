@@ -1,0 +1,36 @@
+@import '../specialStyles/styles';
+
+.insect{
+  opacity: 0.3;
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%);
+  position: absolute;
+  width: 50px;
+}
+
+
+.insectMovingContainer{
+  position: absolute;
+  width: calc(100vw + 100px);
+  height: 100%;
+  margin: 0px -50px;
+  top: 0;
+  left: 0;
+}
+
+.insectMoving{
+  @extend .insect;
+  @extend .my-spin;
+  animation: my-move 10s linear 5s infinite, my-spin 4s linear infinite;
+  offset-rotate: auto 90deg;
+  //animation: my-movingSpin 8s linear 15s infinite;
+}
+
+/*
+.insectWiggle{
+  @extend .my-wiggle;
+  @extend .insect;
+  animation: my-wiggle 10s linear 10s infinite;
+  top: 10px;
+  right: 600px;
+}
+*/

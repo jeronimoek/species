@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import SpeciesItem from './SpeciesItem';
+import SpeciesItem from '../SpeciesItem';
 import './SpeciesCont.scss'
 import RouteContext from '../../context/RouteProvider';
 import LocContext from '../../context/LocProvider';

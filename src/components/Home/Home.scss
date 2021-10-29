@@ -3,38 +3,39 @@
 }
 
 @import '../specialStyles/styles';
+$greenNatural: #a8fab3;
 
 .hero{
   @extend .my-initialUnfade;
-  padding: 100px 50px 150px;
+  padding: 100px 50px 170px;
   text-align: center;
   color: white;
 }
 
-#exploreSectCont{
-  padding: 50px 50px;
-  color: white;
-  background-color: azure;
+.sectCont{
+  padding: 70px 50px;
   .title, .subtitle{
     color: black;
   }
+}
+
+#exploreSectCont{
+  
 }
 
 .grow{
   @extend .my-initialGrow;
 }
 
-.title{
-  @extend .my-title;
-}
-
 .subtitle{
   @extend .my-subtitle;
 }
 
-.exploreSect{
-  display: flex;
-  justify-content: space-between;
+.title{
+  @extend .my-title;
+}
+
+.sect{
   height: fit-content;
   position: relative;
   color: black;
@@ -43,14 +44,19 @@
   z-index: 1;
 }
 
+.exploreSect{
+  display: flex;
+  justify-content: space-between;
+}
+
 .exploreSectTextCont{
   flex: 2 1 1;
   height: 100%;
   max-width: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  .subtitle{
+  justify-content: flex-start;
+  .title, .subtitle{
     margin-top: -10px;
     margin-bottom: 30px;
   }
@@ -91,40 +97,6 @@
   font-weight: 600;
 }
 
-.insect{
-  z-index: 0;
-  opacity: 1;
-  opacity: 0.3;
-  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%);
-  position: absolute;
-  width: 50px;
-  animation-iteration-count: infinite;
-}
-
-/*
-.insectWiggle{
-  @extend .my-wiggle;
-  @extend .insect;
-  animation: my-wiggle 10s linear 10s infinite;
-  top: 10px;
-  right: 600px;
-}
-*/
-
-.insectMovingContainer{
-  position: absolute;
-  width: calc(100vw + 100px);
-  height: 100%;
-  margin: 0px -50px;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
-.insectMoving{
-  @extend .insect;
-  @extend .my-spin;
-  animation: my-move 10s linear 5s infinite, my-spin 4s linear infinite;
-  offset-rotate: auto 90deg;
-  //animation: my-movingSpin 8s linear 15s infinite;
+.primaryBtn{
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }

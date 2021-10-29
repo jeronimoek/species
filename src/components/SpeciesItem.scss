@@ -6,7 +6,7 @@ $contSmallW: 768px;
 $contExtraSmallW: 480px;
 $shadow: 0 0 10px rgba(0, 0, 0, 0.322);
 
-@import '../specialStyles/styles';
+@import './specialStyles/styles';
 
 .Card{
   @extend .my-glass;

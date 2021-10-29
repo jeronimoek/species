@@ -14,14 +14,13 @@ function NavBar(props) {
     <div className="navCont">
       <div className="logo"><img src="https://raw.githubusercontent.com/jeronimoek/jeronimoek.github.io/master/species/img/logo.png" /></div>
       <Menu mode="horizontal" className="topMenu" disabledOverflow={true}>
-        {/*<Menu.Item key="home" className={`menuItem ${actRoute === HEADER_ROUTES.HOME ? "ant-menu-item-selected" : ""}`}>*/}
-        <Menu.Item key="home" className="menuItem">
+        <Menu.Item key="home" className={`menuItem ${actRoute === HEADER_ROUTES.HOME ? "route-selected" : ""}`}>
           <Link to={`/`}>Home</Link>
         </Menu.Item>
-        <Menu.Item key="explore" className="menuItem">
+        <Menu.Item key="explore" className={`menuItem ${actRoute === HEADER_ROUTES.EXPLORE ? "route-selected" : ""}`}>
           <Link to={`/explore`}>Explore</Link>
         </Menu.Item>
-        <Menu.Item key="contact" className="menuItem">
+        <Menu.Item key="contact" className={`menuItem ${actRoute === HEADER_ROUTES.CONTACT ? "route-selected" : ""}`}>
           <Link to={`/contact`}>Contact Us</Link>
         </Menu.Item>
       </Menu>

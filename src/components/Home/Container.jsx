@@ -17,12 +17,12 @@ function Container(props) {
           }}>
         </style>
       )
-    } else {
+    } else if(bgData) {
       setStyle(
         <style dangerouslySetInnerHTML={{
           __html: [
             `#${props.childId}::before {`,
-            `  background-color: url("${bgData}");`,
+            `  background-color: ${bgData};`,
             `}`
             ].join('\n')
           }}>
@@ -36,7 +36,7 @@ function Container(props) {
   return (
     <>
       {style}
-      <div id={props.childId} className="container" style={props.style}>
+      <div id={props.childId} className={`container ${props.className ? props.className : ""}`} style={props.style}>
         {props.children}
       </div>
     </>

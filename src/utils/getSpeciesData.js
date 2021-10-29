@@ -4,7 +4,8 @@ const testData = ["Nothura maculosa","Podiceps major"]
 
 const getSpeciesData = async (data) => {
   var dataJson
-  await axios.post("https://us-central1-species-eebec.cloudfunctions.net/app", {"species": data})
+  await axios
+    .post("https://us-central1-species-eebec.cloudfunctions.net/app", {"species": data})
     .then((response) => {
       console.log("getSpeciesData")
       const dataResp = response.data

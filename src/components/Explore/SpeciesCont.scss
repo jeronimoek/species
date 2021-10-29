@@ -6,13 +6,8 @@ $contNormalW: 1200px;
 $contSmallW: 768px;
 $contExtraSmallW: 480px;
 $pad : 10px;
-$glassBgColor: rgba(255, 255, 255, 0.7);
-$glassBdFilter: blur(3px);
 
-.glass{
-  background-color: $glassBgColor;
-  backdrop-filter: $glassBdFilter;
-}
+@import '../specialStyles/styles';
 
 .speciesCont{
   padding: $pad;
@@ -27,7 +22,7 @@ $glassBdFilter: blur(3px);
 }
 
 .pagCont{
-  @extend .glass;
+  @extend .my-glass;
   padding: $pad;
   width: fit-content;
   margin: $gap auto 0px;
@@ -35,7 +30,7 @@ $glassBdFilter: blur(3px);
 }
 
 .spinDiv{
-  @extend .glass;
+  @extend .my-glass;
   z-index: 10;
   height: 100%;
   width: 100%;

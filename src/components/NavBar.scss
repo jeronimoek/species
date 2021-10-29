@@ -1,27 +1,24 @@
 .navCont{
   display: flex;
   position: relative;
-  height: inherit
-}
-
-.topMenu{
-  background: none;
-  color: white;
-  .menuItem{
-    a{
-      color: white
+  height: inherit;
+  .topMenu{
+    background: none;
+    color: white;
+    .menuItem{
+      a{
+        color: white
+      }
+    }
+    .route-selected::after{
+      border-bottom: solid 2px #1890ff;
     }
   }
 }
-
 .logo img {
   display: block;
   max-height: 100%;
   width: auto;
   height: inherit;
   padding: 5px 10px 5px 0;
-}
-
-.active{
-  border-bottom: solid 1px blue;
 }

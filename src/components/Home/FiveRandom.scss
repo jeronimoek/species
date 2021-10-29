@@ -1,0 +1,63 @@
+@import '../specialStyles/styles';
+
+#resumeSectCont{
+
+}
+
+.resumeSect{
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.resumeSectTextCont{
+  color: black;
+  .title, .subtitle{
+    padding: 0;
+    text-align: center;
+    letter-spacing: 5px;
+  }
+}
+
+.resumeItemsCont{
+  padding: 20px 0 20px;
+  height: 100%;
+  position: relative;
+}
+
+.resumeBtnCont{
+  margin-top: auto;
+  display: flex;
+  justify-content: center
+}
+
+.resumeBtn{
+  @extend .my-jump;
+  animation-timing-function: linear;
+  animation-delay: 6s;
+  animation-duration: 10s;
+  animation-name: my-jump;
+  animation-iteration-count: infinite;
+  height: 40px;
+  width: 200px;
+  font-weight: 600;
+}
+
+.spinDiv{
+  @extend .my-glass;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left:0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  text-align: center;
+  align-content: center;
+  padding-top: 100px;
+  .spinCont{
+    position: sticky;
+    top: 100px;
+  }
+}
