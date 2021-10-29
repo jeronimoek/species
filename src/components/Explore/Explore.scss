@@ -1,7 +1,12 @@
+@import '../specialStyles/styles';
+
 .mainDiv{
   height: 100%;
   position: relative;
-  padding-bottom: 20px;
+  padding: 100px 0 20px;
+  h2{
+    @extend .my-subtitle
+  }
 }
 
 .mainDiv:before{
@@ -11,6 +16,7 @@
   background-size: cover;
   background-position: center center;
   /* must match parent height */
+  top: 0;
   height: 100%;
   position: absolute;
   content: "";

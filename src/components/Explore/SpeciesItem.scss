@@ -9,7 +9,7 @@ $shadow: 0 0 10px rgba(0, 0, 0, 0.322);
 @import '../specialStyles/styles';
 
 .Card{
-  @extend .glass;
+  @extend .my-glass;
   height: "min-content";
   width: 230px;
   margin: $pad;

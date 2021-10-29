@@ -1,46 +1,15 @@
 $gap: 20px;
-.wiggle{
-  @keyframes wiggle {
-    3% {transform: rotate(50deg)}
-    6% {transform: rotate(-50deg);}
-    9% {transform: rotate(50deg);}
-    12% {transform: rotate(-50deg);}
-    15% {transform: rotate(0);}
-  }
-  animation-iteration-count: infinite;
-}
-
-.jump{
-  @keyframes jump {
-    3% {transform: translate(0px,-10px)}
-    6% {transform: translate(0px,10px)}
-    9% {transform: translate(0px,-10px)}
-    12% {transform: translate(0px,10px)}
-    15% {transform: translate(0px,-10px)}
-    18% {transform: translate(0px,10px)}
-    21% {transform: translate(0px,0px)}
-  }
-  animation-iteration-count: infinite;
-}
-
-.spin{
-  @keyframes spin {
-    5% {transform: rotate3d(0,1,0,0deg)}
-    10% {transform: rotate3d(0,1,0,180deg)}
-    15% {transform: rotate3d(0,1,0,0deg)}
-  }
-  animation-iteration-count: infinite;
-}
+@import './specialStyles/styles';
 
 .SourceCode{
-  @extend .wiggle;
-  @extend .jump;
-  @extend .spin;
+  @extend .my-wiggle;
+  @extend .my-jump;
+  @extend .my-spin;
 
   animation-timing-function: linear,ease-out,linear;
   animation-delay: 8s,4s,6s;
   animation-duration: 10s;
-  animation-name: wiggle, jump, spin;
+  animation-name: my-wiggle, my-jump, my-spin;
   animation-iteration-count: infinite;
   
   z-index: 9999;
