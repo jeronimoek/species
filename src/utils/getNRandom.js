@@ -11,10 +11,10 @@ function makeidJoin(length) {
   return result.join('');
 }
 
-const getFiveRandom = async () => {
+const getNRandom = async (n) => {
   var dataJson
   const randomsStr = []
-  const quantity = 5
+  const quantity = n
   const strLength = 3
   for(let i = 0; i < quantity; i++){
     let randomStr = makeidJoin(strLength)
@@ -34,4 +34,4 @@ const getFiveRandom = async () => {
   return dataJson
 }
 
-export default getFiveRandom
+export default getNRandom

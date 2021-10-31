@@ -7,6 +7,7 @@ function Insect(props) {
   const [currentPath, setCurrentPath] = useState(path)
   const src = props.src
   const className = props.className
+  const animationDelay = props.animationDelay ? props.animationDelay : "0s"
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -43,7 +44,7 @@ function Insect(props) {
   return (
   <>
     <div className="insectMovingContainer" ref={divCont}>        
-      <img src={src} alt="insect" className={className} style={{offsetPath: `path('${currentPath}')`}}/>
+      <img src={src} alt="insect" className={className} style={{offsetPath: `path('${currentPath}')`, animationDelay: animationDelay}}/>
     </div>
   </>
   );
