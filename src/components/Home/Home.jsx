@@ -5,6 +5,7 @@ import './Home.scss';
 import Insect from './Insect';
 import NRandom from './NRandom';
 import ButtonLink from '../ButtonLink';
+import ContactForm from '../Contact/ContactForm'
 
 function Home(props) {
 
@@ -57,8 +58,13 @@ function Home(props) {
       <Container childId="resumeSectCont" className="sectCont" background="rgb(168, 250, 179, 0.5)">
         <NRandom numOfSp="6"/>
       </Container>
-      <Container childId="contactSectCont" className="sectCont">
-
+      <Container childId="contactSectCont" background="https://www.cdc.gov/coronavirus/2019-ncov/daily-life-coping/images/cat-and-dog-happy.jpg?_=82492">
+        <div className="contactSect">
+          <h1 className="subtitle contactContSubtitle">
+            Contáctenos de manera directa
+          </h1>
+          <ContactForm/>
+        </div>
       </Container>
     </div>
   );

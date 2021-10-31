@@ -72,8 +72,8 @@ function NRandom(props) {
       <div className="resumeSect sect">
         <div className="resumeSectTextCont">
           <h1 className="subtitle">Más de <span>2000</span> especies</h1>
-          <div className="resumeItemsCont" style={{width: "fit-content", margin:"auto auto "}}>
-            <div style={{display: "grid",gridTemplateColumns: "repeat(3, auto)", justifyItems:"center" , flexWrap: "wrap", justifyContent: "space-evenly"}}>
+          <div className="resumeItemsCont">
+            <div className="speciesGrid">
               {[...speciesItemList]}
             </div>
           </div>

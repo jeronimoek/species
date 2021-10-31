@@ -8,7 +8,10 @@ function Contact(props) {
   props.setHeaderRoute(HEADER_ROUTES.CONTACT)
 
   return (
-    <div style={{ width: "1000px"}}>
+    <div className="contactCont">
+      <h1 className="subtitle contactContSubtitle">
+        Contáctenos de manera directa
+      </h1>
       <ContactForm/>
     </div>
   )

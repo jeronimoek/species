@@ -23,6 +23,14 @@ $greenNatural: #a8fab3;
   
 }
 
+.contactSect{
+  @extend .my-initialUnfade;
+  padding: 70px 0;
+  h1.subtitle, label{
+    color: white;
+  }
+}
+
 .grow{
   @extend .my-initialGrow;
 }

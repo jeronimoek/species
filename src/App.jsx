@@ -52,8 +52,8 @@ function App() {
                   </RouteProvider>
                 </Route>
               </Switch>
-              <Footer style={{zIndex:1}}>
-                
+              <Footer style={{zIndex:1, textAlign: 'center' }}>
+                Species Explorer ©2021 Created by Jerónimo Ekerdt                
               </Footer>
             </Layout>
             <SourceCode/>

@@ -7,10 +7,26 @@ import axios from 'axios';
 
 const layout = {
   labelCol: {
-    span: 3,
+    xs:{
+      span: 6,
+    },
+    sm:{
+      span:4
+    },
+    lg:{
+      span: 3,
+    }
   },
   wrapperCol: {
-    span: 19,
+    xs:{
+      span: 16,
+    },
+    sm:{
+      span:18,
+    },
+    lg:{
+      span: 19,
+    }
   },
 };
 
@@ -51,52 +67,65 @@ const ContactForm = () => {
   };
 
   return (
-    <Form {...layout} name='nest-messages' onFinish={onFinish} validateMessages={validateMessages} style={{marginTop: 64}}>
-      <Form.Item
-        name={'user_name'}
-        label="Nombre"
-        rules={[
-          {
-            required: true,
+    <div className="formCont">
+      <Form {...layout} name='nest-messages' onFinish={onFinish} validateMessages={validateMessages}>
+        <Form.Item
+          name={'user_name'}
+          label="Nombre"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name='user_email'
+          label="Email"
+          rules={[
+            {
+              type: 'email',
+            },
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item name='user_website' label="Página web">
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          name='message' 
+          label="Mensaje"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input.TextArea />
+        </Form.Item>
+        <Form.Item wrapperCol={{ 
+          ...layout.wrapperCol, 
+          xs:{
+            offset: 0,
           },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name='user_email'
-        label="Email"
-        rules={[
-          {
-            type: 'email',
+          sm:{
+            offset:4,
           },
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item name='user_website' label="Página web">
-        <Input />
-      </Form.Item>
-      <Form.Item 
-        name='message' 
-        label="Mensaje"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Input.TextArea />
-      </Form.Item>
-      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 3 }}>
-        <Button type="primary" htmlType="submit" onClick={onFinish}>
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+          lg:{
+            offset: 3,
+          }
+        }}>
+          <Button type="primary" htmlType="submit" onClick={onFinish}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 

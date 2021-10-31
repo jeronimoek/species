@@ -1,0 +1,19 @@
+@import '../specialStyles/styles.scss';
+
+.title{
+  @extend .my-title;
+}
+.subtitle{
+  @extend .my-subtitle;
+}
+
+.title.contactContTitle,.subtitle.contactContSubtitle{
+  text-align: center;
+  color: black;
+  margin-bottom: 50px;
+}
+
+.contactCont{
+  padding: 70px 50px;
+  height: calc(100vh - 64px - 70px);
+}
