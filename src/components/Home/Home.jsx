@@ -6,6 +6,47 @@ import Insect from './Insect';
 import NRandom from './NRandom';
 import ButtonLink from '../ButtonLink';
 import ContactForm from '../Contact/ContactForm'
+import handleViewport from 'react-in-viewport';
+
+function HeroBlock(props) {
+  const { inViewport, forwardedRef, enterCount } = props;
+  const viewed = inViewport && enterCount === 1
+  return (
+    <div ref={forwardedRef}>
+      <div className="container">
+        <Container childId="heroCont" background="https://www.sanfernando.gob.ar/images/contenido/201809/5bad272db8d3b_Flora-y-Fauna-ciervo-de-los-pantanos-II.jpg">
+          <div className={`hero ${viewed ? "unfade": ""}`}>
+            <h1 className={`title title-grow ${viewed ? "grow": ""}`}>Descubrí Entre Ríos</h1>
+            <h2 className={`subtitle subtitle-grow ${viewed ? "grow": ""}`}>Investigá su Fauna y Flora</h2>
+          </div>
+        </Container>
+      </div>
+    </div>
+  )
+}
+
+const ViewportHeroBlock = handleViewport(HeroBlock)
+
+function ContactBlock(props) {
+  const { inViewport, forwardedRef, enterCount } = props;
+  const viewed = inViewport && enterCount === 1
+  return (
+    <div ref={forwardedRef}>
+      <div className="container">
+        <Container childId="contactSectCont" background="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Capivara%28Hydrochoerus_hydrochaeris%29.jpg/1200px-Capivara%28Hydrochoerus_hydrochaeris%29.jpg">
+          <div className={`contactSect ${viewed ? "unfade": ""}`}>
+            <h1 className="subtitle contactContSubtitle">
+              Contáctenos de manera directa
+            </h1>
+            <ContactForm/>
+          </div>
+        </Container>
+      </div>
+    </div>
+  )
+}
+
+const ViewportContactBlock = handleViewport(ContactBlock)
 
 function Home(props) {
 
@@ -30,12 +71,7 @@ function Home(props) {
 
   return (
     <div>
-      <Container childId="heroCont" background="https://www.sanfernando.gob.ar/images/contenido/201809/5bad272db8d3b_Flora-y-Fauna-ciervo-de-los-pantanos-II.jpg">
-        <div className="hero">
-          <h1 className="title grow">Descubrí Entre Ríos</h1>
-          <h2 className="subtitle grow">Investigá su Fauna y Flora</h2>
-        </div>
-      </Container>
+      <ViewportHeroBlock onEnterViewport={() => console.log('enter')} onLeaveViewport={() => console.log('leave')} />
       <Container childId="exploreSectCont" className="sectCont" background="azure">
         <div className="exploreSect sect">
           <div className="exploreSectTextCont">
@@ -58,14 +94,7 @@ function Home(props) {
       <Container childId="resumeSectCont" className="sectCont" background="rgb(168, 250, 179, 0.5)">
         <NRandom numOfSp="6"/>
       </Container>
-      <Container childId="contactSectCont" background="https://www.cdc.gov/coronavirus/2019-ncov/daily-life-coping/images/cat-and-dog-happy.jpg?_=82492">
-        <div className="contactSect">
-          <h1 className="subtitle contactContSubtitle">
-            Contáctenos de manera directa
-          </h1>
-          <ContactForm/>
-        </div>
-      </Container>
+      <ViewportContactBlock onEnterViewport={() => console.log('enter')} onLeaveViewport={() => console.log('leave')} />
     </div>
   );
 }

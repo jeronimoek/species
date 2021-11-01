@@ -6,10 +6,14 @@
 $greenNatural: #a8fab3;
 
 .hero{
-  @extend .my-initialUnfade;
+  @extend .my-initialUnfadeFinal;
   padding: 100px 50px 170px;
   text-align: center;
   color: white;
+}
+
+.unfade{
+  @extend .my-initialUnfade;
 }
 
 .sectCont{
@@ -24,7 +28,7 @@ $greenNatural: #a8fab3;
 }
 
 .contactSect{
-  @extend .my-initialUnfade;
+  @extend .my-initialUnfadeFinal;
   padding: 70px 0;
   h1.subtitle, label{
     color: white;
@@ -41,6 +45,10 @@ $greenNatural: #a8fab3;
 
 .title{
   @extend .my-title;
+}
+
+.subtitle-grow, .title-grow{
+  @extend .my-initialGrowFinal;
 }
 
 .sect{

@@ -107,6 +107,14 @@ $white: rgb(255, 255, 255);
   animation-fill-mode: forwards;
 }
 
+.my-initialUnfadeFinal{
+  opacity: 1;
+  background-color: blackOp(0.3);
+  backdrop-filter: blur(5px);
+  position: relative;
+  height: 100%;
+}
+
 .my-initialGrow{
   @keyframes my-initialGrow {
     0%{
@@ -121,6 +129,10 @@ $white: rgb(255, 255, 255);
   }
   animation: my-initialGrow 5s linear;
   animation-fill-mode: forwards;
+}
+
+.my-initialGrowFinal{
+  transform: scale(1);
 }
 
 @keyframes my-move {
